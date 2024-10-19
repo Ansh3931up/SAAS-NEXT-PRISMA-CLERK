@@ -82,7 +82,7 @@ NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 ```
 
-#4. Add a middleware file and use createRouteMatcher to make public and private route to secure authorization process:
+# 4. Add a middleware file and use createRouteMatcher to make public and private route to secure authorization process:
 ```bash
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
@@ -104,7 +104,7 @@ export const config = {
 };
 ```
 
-#5. Also add the cosnt clerkMiddleware and export it for making the logic behind the secure authorization
+# 5. Also add the cosnt clerkMiddleware and export it for making the logic behind the secure authorization
 ```bash
 export default clerkMiddleware((auth, req) => {
   const { userId } = auth();
@@ -137,7 +137,7 @@ export default clerkMiddleware((auth, req) => {
 });
 ```
 
-#6. Wrap the whole code using Clerkprovider by adding it to layout under the app
+# 6. Wrap the whole code using Clerkprovider by adding it to layout under the app
 ```bash
 import { ClerkProvider } from "@clerk/nextjs";
 
