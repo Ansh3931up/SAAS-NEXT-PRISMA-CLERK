@@ -152,6 +152,60 @@ import { ClerkProvider } from "@clerk/nextjs";
   );
 
 ```
+# 7.Now installing Prisma
+```bash
+npm install prisma typescript ts-node @types/node --save-dev
+```
+# 8. Create the model in schema.prisma :
+```bash
+model Video{
+  id          String @id @default(cuid())
+  title       String
+  description String?
+  publicId String
+  originalSize String
+  compressedSize String
+  duration String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+```
+# 9. Now create further process using
+```bash
+npx prisma init
+npx prisma migrate dev --name init
+npm install @prisma/client
+```
+# 10. Also change the .env DATABASE_URL from the neon db site:
+```bash
+DATABASE_URL="postgresql://cloudinary-saas_owner:JNFTp7euasZ0@ep-silent-pine-a5n24n93.us-east-2.aws.neon.tech/cloudinary-saas?sslmode=require"
+```
+# 11. After thsi you can craete route for the app:
+app >> api >> video >>route.ts
+```bash
+import {NextRequest,NextResponse} from "next/server"
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export async function GET(req:NextRequest) {    
+    try {
+        const videos=await prisma.video.findMany({
+            orderBy:{
+                createdAt:"desc"
+            }
+        })
+        return NextResponse.json(videos)
+    } catch (error) {
+        return NextResponse.json({error:"Something went wrong"},{status:500})   
+    }
+    finally{
+        await prisma.$disconnect()
+    }
+
+}
+```
 ---
 
 ## Usage
