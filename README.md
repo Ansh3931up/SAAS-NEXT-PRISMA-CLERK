@@ -181,7 +181,7 @@ npm install @prisma/client
 ```bash
 DATABASE_URL="postgresql://cloudinary-saas_owner:JNFTp7euasZ0@ep-silent-pine-a5n24n93.us-east-2.aws.neon.tech/cloudinary-saas?sslmode=require"
 ```
-# 11. After thsi you can craete route for the app:
+# 11. After this you can create route for the app:
 app >> api >> video >>route.ts
 ```bash
 import {NextRequest,NextResponse} from "next/server"
